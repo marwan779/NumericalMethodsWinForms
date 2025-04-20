@@ -33,6 +33,12 @@
     <ClCompile Include="Secant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Newton..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DividedDifferenceInterpolator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -51,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Secant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Newton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DividedDifferenceInterpolator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

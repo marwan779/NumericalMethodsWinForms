@@ -2,6 +2,7 @@
 
 #include "BisectionFrom.h"
 #include "SecantForm.h"
+#include "Newton.h"
 
 namespace Project1 {
 
@@ -23,6 +24,7 @@ namespace Project1 {
 			InitializeComponent();
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 
 		}
 
@@ -252,6 +254,10 @@ namespace Project1 {
 	}
 
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Open the Newton Interpolation form
+		Project1::Newton^ Newton = gcnew Project1::Newton();
+		Newton->Show();
+		// this->Hide(); // Uncomment if you want to hide MyForm
 	}
 	};
 

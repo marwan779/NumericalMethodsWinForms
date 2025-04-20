@@ -122,7 +122,9 @@
   <ItemGroup>
     <ClCompile Include="Bisection.cpp" />
     <ClCompile Include="BisectionFrom.cpp" />
+    <ClCompile Include="DividedDifferenceInterpolator.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Newton..cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Secant.cpp" />
     <ClCompile Include="SecantForm.cpp" />
@@ -132,7 +134,11 @@
     <ClInclude Include="BisectionFrom.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="DividedDifferenceInterpolator.h" />
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Newton.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Parser.h" />
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Newton.resx">
+      <DependentUpon>Newton.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
