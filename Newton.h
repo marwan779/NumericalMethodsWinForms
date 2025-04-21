@@ -61,7 +61,7 @@ namespace Project1 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -106,6 +106,7 @@ namespace Project1 {
 			// 
 			// btnSubmit
 			// 
+			this->btnSubmit->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnSubmit->Location = System::Drawing::Point(89, 655);
@@ -175,74 +176,85 @@ namespace Project1 {
 
 		}
 #pragma endregion
-	
 
-private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
-	std::vector<double> xValues;
-	std::vector<double> yValues;
 
-	// Read X and Y values from DataGridView
-	for (int i = 0; i < dataGrid->Rows->Count - 1; i++) {
-		if (dataGrid->Rows[i]->Cells[0]->Value != nullptr &&
-			dataGrid->Rows[i]->Cells[1]->Value != nullptr) {
-			try {
-				double x = Convert::ToDouble(dataGrid->Rows[i]->Cells[0]->Value);
-				double y = Convert::ToDouble(dataGrid->Rows[i]->Cells[1]->Value);
-				xValues.push_back(x);
-				yValues.push_back(y);
+	private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
+		std::vector<double> xValues;
+		std::vector<double> yValues;
+
+
+		try
+		{
+			for (int i = 0; i < dataGrid->Rows->Count - 1; i++) {
+				if (dataGrid->Rows[i]->Cells[0]->Value != nullptr &&
+					dataGrid->Rows[i]->Cells[1]->Value != nullptr) {
+					try {
+						double x = Convert::ToDouble(dataGrid->Rows[i]->Cells[0]->Value);
+						double y = Convert::ToDouble(dataGrid->Rows[i]->Cells[1]->Value);
+						xValues.push_back(x);
+						yValues.push_back(y);
+					}
+					catch (...) {
+						MessageBox::Show("Please enter valid numeric values in the table.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						return;
+					}
+				}
+				else {
+					MessageBox::Show("Please fill all X and Y values.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
+				}
 			}
-			catch (...) {
-				MessageBox::Show("❌ Please enter valid numeric values in the table.");
+
+			// Check number of points
+			if (xValues.size() < 2 || xValues.size() > 20) {
+				MessageBox::Show("Please enter at least 2 points and no more than 20.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 				return;
 			}
-		}
-		else {
-			MessageBox::Show("❌ Please fill all X and Y values.");
-			return;
-		}
-	}
 
-	// Check number of points
-	if (xValues.size() < 2 || xValues.size() > 20) {
-		MessageBox::Show("❌ Please enter at least 2 points and no more than 20.");
-		return;
-	}
+			// Check for duplicate X values
+			for (int i = 0; i < xValues.size(); i++) {
+				for (int j = i + 1; j < xValues.size(); j++) {
+					if (xValues[i] == xValues[j]) {
+						MessageBox::Show("X values must be distinct (no duplicates).", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						return;
+					}
+				}
+			}
 
-	// Check for duplicate X values
-	for (int i = 0; i < xValues.size(); i++) {
-		for (int j = i + 1; j < xValues.size(); j++) {
-			if (xValues[i] == xValues[j]) {
-				MessageBox::Show("❌ X values must be distinct (no duplicates).");
+			// Parse the xx value
+			double xx;
+			if (!Double::TryParse(xx_value->Text, xx)) {
+				MessageBox::Show("Please enter a valid X value to evaluate.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 				return;
 			}
+
+			// All input is valid → perform interpolation
+			richTextBox1->Clear();
+			divide interpolator;
+			interpolator.setData(xValues, yValues, xx, richTextBox1);
 		}
+		catch (const std::exception&)
+		{
+			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+		}
+
+		// Read X and Y values from DataGridView
+
+
 	}
 
-	// Parse the xx value
-	double xx;
-	if (!Double::TryParse(xx_value->Text, xx)) {
-		MessageBox::Show("❌ Please enter a valid X value to evaluate.");
-		return;
+	private: System::Void dataGrid_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
 	}
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void xx_value_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
-	// All input is valid → perform interpolation
-	richTextBox1->Clear();
-	divide interpolator;
-	interpolator.setData(xValues, yValues, xx, richTextBox1);
-
-}
-
-private: System::Void dataGrid_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		
-}
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void xx_value_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	 
-}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	}
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }

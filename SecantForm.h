@@ -88,6 +88,7 @@ namespace Project1 {
 			// 
 			// button1
 			// 
+			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(155, 360);
@@ -225,32 +226,41 @@ namespace Project1 {
 	private: System::Void button1_click(System::Object^ sender, System::EventArgs^ e) {
 
 
-		if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "")
+		try
 		{
-			// Get equation from TextBox
-			std::string equation = msclr::interop::marshal_as<std::string>(textBox1->Text);
+			if (textBox1->Text != "" && textBox2->Text != "" && textBox3->Text != "" && textBox4->Text != "" && textBox5->Text != "")
+			{
+				// Get equation from TextBox
+				std::string equation = msclr::interop::marshal_as<std::string>(textBox1->Text);
 
-			// Temporary hardcoded values for a, b, tol, and maxIter
-			int a = Convert::ToInt32(textBox2->Text);
-			int b = Convert::ToInt32(textBox5->Text);
-			double tol = Convert::ToDouble(textBox3->Text);
-			int maxIter = Convert::ToInt32(textBox4->Text);
+				// Temporary hardcoded values for a, b, tol, and maxIter
+				int a = Convert::ToInt32(textBox2->Text);
+				int b = Convert::ToInt32(textBox5->Text);
+				double tol = Convert::ToDouble(textBox3->Text);
+				int maxIter = Convert::ToInt32(textBox4->Text);
 
-			// Call the native class
-			SecantSolver solver(equation, a, b, tol, maxIter);
-			std::string result = solver.GetResult();
+				// Call the native class
+				SecantSolver solver(equation, a, b, tol, maxIter);
+				std::string result = solver.GetResult();
 
-			// Convert std::string to System::String^
-			String^ output = gcnew String(result.c_str());
-			richTextBox1->Text = output;
+				// Convert std::string to System::String^
+				String^ output = gcnew String(result.c_str());
+				richTextBox1->Text = output;
+			}
+			else
+			{
+				//richTextBox1->Text = "Invalid or missing values";
+				MessageBox::Show("Invalid or missing values", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			}
 		}
-		else
+		catch (exception ex)
 		{
-			richTextBox1->Text = "Invalid or missing values";
+			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
-		
+
 	}
+
 
 
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {

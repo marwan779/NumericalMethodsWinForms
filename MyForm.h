@@ -174,7 +174,6 @@ namespace Project1 {
 			this->button7->TabIndex = 7;
 			this->button7->Text = L"Newton Interpolation";
 			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 			// 
 			// button8
 			// 
