@@ -108,27 +108,11 @@ void EquationParser::parseEquation(const string& equation) {
         // Handle operators and parentheses
         if (isOperator(c) || c == '(' || c == ')') {
             // Handle unary minus
-            if (c == '-' && (tokens.empty() || tokens.back() == "(" ||
-                isOperator(tokens.back()[0]))) {
-                tokens.push_back("(");
+            if (c == '-' && (tokens.empty() || tokens.back() == "(" || isOperator(tokens.back()[0]))) {
                 tokens.push_back("0");
                 tokens.push_back("-");
-                // Get the operand
-                if (i + 1 < equation.size()) {
-                    if (equation[i + 1] == '(') {
-                        tokens.push_back("(");
-                        i++;
-                    }
-                    else if (equation[i + 1] == 'x') {
-                        tokens.push_back("x");
-                        i++;
-                    }
-                    else if (isdigit(equation[i + 1]) || equation[i + 1] == '.') {
-                        // Let the number parsing handle it next iteration
-                    }
-                }
-                tokens.push_back(")");
                 i++;
+                continue;
             }
             else {
                 tokens.push_back(string(1, c));
@@ -148,7 +132,9 @@ void EquationParser::convertToPostfix() {
     stack<string> op_stack;
 
     for (const auto& token : tokens) {
-        if (token == "x" || isdigit(token[0]) || (token[0] == '-' && token.size() > 1) || isConstant(token)) {
+        if (token == "x" || isdigit(token[0]) ||
+            (token[0] == '-' && token.size() > 1 && isdigit(token[1])) ||
+            isConstant(token)) {
             postfix.push_back(token);
         }
         else if (isFunction(token)) {
@@ -195,7 +181,7 @@ double EquationParser::evaluate(double x_value) {
         if (token == "x") {
             val_stack.push(x_value);
         }
-        else if (isdigit(token[0]) || (token[0] == '-' && token.size() > 1)) {
+        else if (isdigit(token[0]) || (token[0] == '-' && token.size() > 1 && isdigit(token[1]))) {
             val_stack.push(stod(token));
         }
         else if (isConstant(token)) {

@@ -123,6 +123,8 @@
     <ClCompile Include="Bisection.cpp" />
     <ClCompile Include="BisectionFrom.cpp" />
     <ClCompile Include="DividedDifferenceInterpolator.cpp" />
+    <ClCompile Include="Integration.cpp" />
+    <ClCompile Include="IntegrationForm.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Newton.cpp" />
     <ClCompile Include="Parser.cpp" />
@@ -135,6 +137,10 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DividedDifferenceInterpolator.h" />
+    <ClInclude Include="Integration.h" />
+    <ClInclude Include="IntegrationForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -149,6 +155,9 @@
     <EmbeddedResource Include="BisectionFrom.resx">
       <DependentUpon>BisectionFrom.h</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntegrationForm.resx">
+      <DependentUpon>IntegrationForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
