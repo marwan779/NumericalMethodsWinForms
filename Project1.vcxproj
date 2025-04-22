@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -123,6 +123,8 @@
     <ClCompile Include="Bisection.cpp" />
     <ClCompile Include="BisectionFrom.cpp" />
     <ClCompile Include="DividedDifferenceInterpolator.cpp" />
+    <ClCompile Include="EulerMethods.cpp" />
+    <ClCompile Include="EulerMethodsForm.cpp" />
     <ClCompile Include="Integration.cpp" />
     <ClCompile Include="IntegrationForm.cpp" />
     <ClCompile Include="MyForm.cpp" />
@@ -137,6 +139,10 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DividedDifferenceInterpolator.h" />
+    <ClInclude Include="EulerMethods.h" />
+    <ClInclude Include="EulerMethodsForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Integration.h" />
     <ClInclude Include="IntegrationForm.h">
       <FileType>CppForm</FileType>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="BisectionFrom.resx">
       <DependentUpon>BisectionFrom.h</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EulerMethodsForm.resx">
+      <DependentUpon>EulerMethodsForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IntegrationForm.resx">
       <DependentUpon>IntegrationForm.h</DependentUpon>

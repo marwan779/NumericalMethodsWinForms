@@ -396,7 +396,11 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 	catch (const std::exception& e) {
 
 		MessageBox::Show("An error occurred: " + gcnew System::String(e.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}		
+	}
+	catch (...)
+	{
+		MessageBox::Show("An error occurred: " + gcnew System::String("Unknown Error"), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 
 };
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {

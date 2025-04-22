@@ -33,10 +33,22 @@
     <ClCompile Include="Secant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Newton..cpp">
+    <ClCompile Include="DividedDifferenceInterpolator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DividedDifferenceInterpolator.cpp">
+    <ClCompile Include="Integration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegrationForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Newton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EulerMethods.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EulerMethodsForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +75,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DividedDifferenceInterpolator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Integration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegrationForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EulerMethods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EulerMethodsForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

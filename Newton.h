@@ -238,7 +238,10 @@ namespace Project1 {
 			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 
 		}
-
+		catch (...)
+		{
+			MessageBox::Show("An unexpected error occurred.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 		// Read X and Y values from DataGridView
 
 

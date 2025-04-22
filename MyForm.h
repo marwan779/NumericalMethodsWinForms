@@ -4,6 +4,7 @@
 #include "SecantForm.h"
 #include "Newton.h"
 #include "IntegrationForm.h"
+#include "EulerMethodsForm.h"
 
 namespace Project1 {
 
@@ -27,6 +28,7 @@ namespace Project1 {
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			this->button8->Click += gcnew System::EventHandler(this, &MyForm::button8_Click);
 
 
 		}
@@ -51,7 +53,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button6;
 	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Button^ button8;
-	private: System::Windows::Forms::Button^ button9;
+
 	private: System::Windows::Forms::Button^ button10;
 
 	protected:
@@ -76,7 +78,6 @@ namespace Project1 {
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -127,7 +128,6 @@ namespace Project1 {
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"Integration";
 			this->button3->UseVisualStyleBackColor = true;
-			//this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button6
 			// 
@@ -158,31 +158,19 @@ namespace Project1 {
 			this->button8->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button8->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->Location = System::Drawing::Point(87, 331);
+			this->button8->Location = System::Drawing::Point(112, 331);
 			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(97, 60);
+			this->button8->Size = System::Drawing::Size(200, 60);
 			this->button8->TabIndex = 8;
-			this->button8->Text = L"Euler";
+			this->button8->Text = L"Euler and Euler Modified";
 			this->button8->UseVisualStyleBackColor = true;
-			// 
-			// button9
-			// 
-			this->button9->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button9->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button9->Location = System::Drawing::Point(248, 331);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(155, 60);
-			this->button9->TabIndex = 9;
-			this->button9->Text = L"Modified Euler";
-			this->button9->UseVisualStyleBackColor = true;
 			// 
 			// button10
 			// 
 			this->button10->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button10->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button10->Location = System::Drawing::Point(466, 331);
+			this->button10->Location = System::Drawing::Point(437, 331);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(155, 60);
 			this->button10->TabIndex = 10;
@@ -195,7 +183,6 @@ namespace Project1 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(788, 596);
 			this->Controls->Add(this->button10);
-			this->Controls->Add(this->button9);
 			this->Controls->Add(this->button8);
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->button6);
@@ -240,6 +227,12 @@ namespace Project1 {
 		   integrationForm->Show();
 		// this->Hide(); // Uncomment if you want to hide MyForm
 	}
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Open the Euler and Euler Modified form
+	Project1::EulerMethodsForm^ eulerMethodsForm = gcnew Project1::EulerMethodsForm();
+	eulerMethodsForm->Show();
+	// this->Hide(); // Uncomment if you want to hide MyForm
+}
 };
 
 

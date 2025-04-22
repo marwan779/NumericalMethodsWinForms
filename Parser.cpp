@@ -1,11 +1,26 @@
 #include "parser.h"
+#include <cmath>
+#include <stack>
+#include <stdexcept>
+#include <sstream>
+#include <iostream>
 
 using namespace std;
 
+// Constructor
+EquationParser::EquationParser() : allow_xy(false) {}
+
+// Set the flag to allow or disallow both x and y in the same expression
+void EquationParser::setAllowXY(bool allow) {
+    allow_xy = allow;
+}
+
+// Check if the character is a valid operator
 bool EquationParser::isOperator(char c) {
     return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
 }
 
+// Get the precedence of operators
 int EquationParser::precedence(char op) {
     if (op == '+' || op == '-') return 1;
     if (op == '*' || op == '/') return 2;
@@ -13,6 +28,7 @@ int EquationParser::precedence(char op) {
     return 0;
 }
 
+// Check if the string is a valid mathematical function
 bool EquationParser::isFunction(const string& token) {
     for (const auto& func : math_functions) {
         if (token == func) return true;
@@ -20,12 +36,16 @@ bool EquationParser::isFunction(const string& token) {
     return false;
 }
 
+// Check if the string is a constant (like pi or e)
 bool EquationParser::isConstant(const string& token) {
     return constants.find(token) != constants.end();
 }
 
+// Validate the tokens to ensure the equation is valid
 void EquationParser::validateTokens() {
     int paren_count = 0;
+    bool has_x = false, has_y = false;
+
     for (size_t i = 0; i < tokens.size(); i++) {
         const string& token = tokens[i];
 
@@ -41,13 +61,21 @@ void EquationParser::validateTokens() {
                 throw runtime_error("Function '" + token + "' not followed by parentheses");
             }
         }
+
+        if (token == "x") has_x = true;
+        if (token == "y") has_y = true;
     }
 
     if (paren_count != 0) {
         throw runtime_error("Mismatched parentheses in equation");
     }
+
+    if (!allow_xy && has_x && has_y) {
+        throw runtime_error("Equation cannot contain both x and y at the same time.");
+    }
 }
 
+// Parse the equation into tokens
 void EquationParser::parseEquation(const string& equation) {
     tokens.clear();
     postfix.clear();
@@ -60,7 +88,6 @@ void EquationParser::parseEquation(const string& equation) {
             continue;
         }
 
-        // Handle numbers (including scientific notation)
         if (isdigit(c) || c == '.') {
             string num;
             bool has_decimal = false, has_exponent = false;
@@ -83,7 +110,6 @@ void EquationParser::parseEquation(const string& equation) {
             continue;
         }
 
-        // Handle variables, functions, and constants
         if (isalpha(c)) {
             string word;
             while (i < equation.size() && isalpha(equation[i])) {
@@ -99,15 +125,16 @@ void EquationParser::parseEquation(const string& equation) {
             else if (word == "x" || word == "X") {
                 tokens.push_back("x");
             }
+            else if (word == "y" || word == "Y") {
+                tokens.push_back("y");
+            }
             else {
                 throw runtime_error("Unknown identifier: " + word);
             }
             continue;
         }
 
-        // Handle operators and parentheses
         if (isOperator(c) || c == '(' || c == ')') {
-            // Handle unary minus
             if (c == '-' && (tokens.empty() || tokens.back() == "(" || isOperator(tokens.back()[0]))) {
                 tokens.push_back("0");
                 tokens.push_back("-");
@@ -128,11 +155,12 @@ void EquationParser::parseEquation(const string& equation) {
     convertToPostfix();
 }
 
+// Convert the equation to postfix notation
 void EquationParser::convertToPostfix() {
     stack<string> op_stack;
 
     for (const auto& token : tokens) {
-        if (token == "x" || isdigit(token[0]) ||
+        if (token == "x" || token == "y" || isdigit(token[0]) ||
             (token[0] == '-' && token.size() > 1 && isdigit(token[1])) ||
             isConstant(token)) {
             postfix.push_back(token);
@@ -174,12 +202,38 @@ void EquationParser::convertToPostfix() {
     }
 }
 
+// Evaluate the postfix expression
 double EquationParser::evaluate(double x_value) {
+    bool has_x = false, has_y = false;
+    for (const auto& token : postfix) {
+        if (token == "x") has_x = true;
+        if (token == "y") has_y = true;
+    }
+
+    if (!allow_xy && has_x && has_y) {
+        throw runtime_error("This equation requires either x or y, not both.");
+    }
+    else if (has_x) {
+        return evaluate(x_value, 0);
+    }
+    else if (has_y) {
+        return evaluate(0, x_value);
+    }
+    else {
+        return evaluate(0, 0);
+    }
+}
+
+// Evaluate the equation with both x and y values
+double EquationParser::evaluate(double x_value, double y_value) {
     stack<double> val_stack;
 
     for (const auto& token : postfix) {
         if (token == "x") {
             val_stack.push(x_value);
+        }
+        else if (token == "y") {
+            val_stack.push(y_value);
         }
         else if (isdigit(token[0]) || (token[0] == '-' && token.size() > 1 && isdigit(token[1]))) {
             val_stack.push(stod(token));
@@ -238,6 +292,7 @@ double EquationParser::evaluate(double x_value) {
     return val_stack.top();
 }
 
+// Print the postfix expression for debugging
 void EquationParser::printPostfix() {
     cout << "Postfix notation: ";
     for (const auto& token : postfix) {
