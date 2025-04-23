@@ -127,6 +127,8 @@
     <ClCompile Include="EulerMethodsForm.cpp" />
     <ClCompile Include="Integration.cpp" />
     <ClCompile Include="IntegrationForm.cpp" />
+    <ClCompile Include="LagrangeForm.cpp" />
+    <ClCompile Include="LagrangeInterpolator.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Newton.cpp" />
     <ClCompile Include="Parser.cpp" />
@@ -147,6 +149,10 @@
     <ClInclude Include="IntegrationForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="LagrangeForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="LagrangeInterpolator.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IntegrationForm.resx">
       <DependentUpon>IntegrationForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LagrangeForm.resx">
+      <DependentUpon>LagrangeForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>

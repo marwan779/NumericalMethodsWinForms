@@ -5,6 +5,7 @@
 #include "Newton.h"
 #include "IntegrationForm.h"
 #include "EulerMethodsForm.h"
+#include "LagrangeForm.h"
 
 namespace Project1 {
 
@@ -29,6 +30,7 @@ namespace Project1 {
 			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			this->button8->Click += gcnew System::EventHandler(this, &MyForm::button8_Click);
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
 
 
 		}
@@ -170,7 +172,7 @@ namespace Project1 {
 			this->button10->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button10->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button10->Location = System::Drawing::Point(437, 331);
+			this->button10->Location = System::Drawing::Point(411, 331);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(155, 60);
 			this->button10->TabIndex = 10;
@@ -231,6 +233,12 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 	// Open the Euler and Euler Modified form
 	Project1::EulerMethodsForm^ eulerMethodsForm = gcnew Project1::EulerMethodsForm();
 	eulerMethodsForm->Show();
+	// this->Hide(); // Uncomment if you want to hide MyForm
+}
+private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Open the Lagrange Interpolation form
+	Project1::LagrangeForm^ lagrangeForm = gcnew Project1::LagrangeForm();
+	lagrangeForm->Show();
 	// this->Hide(); // Uncomment if you want to hide MyForm
 }
 };
