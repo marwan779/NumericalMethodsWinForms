@@ -211,7 +211,7 @@ namespace Project1 {
 	private: System::Void Calc_Click(System::Object^ sender, System::EventArgs^ e) {
 		richTextBox1->Clear();
 		std::vector<double> xValues, yValues;
-		double yInput, xInput, xResult, yResult;
+		double yInput, xInput, xResult=0, yResult=0;
 		try {
 			// Check which radio button is selected
 			if (!calcX->Checked && !calcY->Checked) {
@@ -246,17 +246,19 @@ namespace Project1 {
 			}
 
 			// Check for duplicate x or y values
-			std::set<double> uniqueCheck;
+			std::set<double> XuniqueCheck;
+			std::set<double> YuniqueCheck;
+
 
 			for (double val : xValues) {  // Check duplicates in xValues
-				if (!uniqueCheck.insert(val).second) {
+				if (!XuniqueCheck.insert(val).second) {
 					MessageBox::Show("Duplicate X value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 					return;
 				}
 			}
 
 			for (double val : yValues) {  // Check duplicates in yValues
-				if (!uniqueCheck.insert(val).second) {
+				if (!YuniqueCheck.insert(val).second) {
 					MessageBox::Show("Duplicate Y value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 					return;
 				}
