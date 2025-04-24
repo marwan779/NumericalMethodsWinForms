@@ -128,6 +128,7 @@ TEST(EquationParserTest, HandlesBasicOperations) {
 **Contributors**:  
 - Marwan ([@marwan779](https://github.com/marwan779))
 - Abdelhamid ([@Abdelhamid108](https://github.com/Abdelhamid108))
+- Yehia Hamdy ([@YHS003](https://github.com/YHS003))
 
 **Acknowledgments**  
 - Numerical Recipes: The Art of Scientific Computing
