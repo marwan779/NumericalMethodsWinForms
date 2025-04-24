@@ -117,4 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Numerical Methods Overview
+
+1. Bisection Method
+A bracketing method for finding roots of continuous functions by repeatedly halving an interval. Simple and reliable.
+
+2. Secant Method
+An open method for finding roots using a sequence of secant lines. Faster than bisection, but requires good initial guesses.
+
+3. Lagrange Interpolation
+Estimates values by constructing a polynomial that passes through given data points. No need to compute divided differences.
+
+4. Newton Interpolation
+Uses divided differences to form a polynomial for interpolation. Efficient for adding new data points.
+
+5. Integration Methods:
+- Simpson’s 1/3 Rule: Approximates integrals using quadratic polynomials over intervals. Accurate and efficient.
+- Simpson’s 3/8 Rule: Similar to 1/3 rule but uses cubic polynomials.
+- Trapezoidal Rule: Uses trapezoids to approximate the area under curves. Simple but less accurate.
+
+6. Euler’s Method
+Solves ordinary differential equations (ODEs) using a step-by-step approximation. Easy to implement.
+
+7. Modified Euler’s Method
+An improved version of Euler's method, averaging slopes for better accuracy in solving ODEs.
+
+Application Capabilities
+
+This application includes a powerful equation parser that supports a wide range of mathematical functions and constants, including:
+
+Supported Functions:
+sin, cos, tan, asin, acos, atan,
+sinh, cosh, tanh, sqrt, exp, ln, log
+
+Supported Constants:
+pi (3.141592654), e (2.718281828)
+
+You can input custom equations involving variables like x (and optionally y) with support for standard operators: +, -, *, /, and ^.
+
+The application ensures equation validity by:
+- Checking for consecutive operators
+- Verifying function syntax (e.g., sin(x))
+- Ensuring proper parentheses matching
+- Restricting the use of both x and y unless explicitly allowed
+
+This allows the application to accurately evaluate, plot, and solve equations using the selected numerical methods, making it a versatile tool for students and engineers alike.</value>
+  </data>
 </root>

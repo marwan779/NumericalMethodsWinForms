@@ -46,17 +46,36 @@ namespace Project1 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
+	protected:
+
+	protected:
 
 
 	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button7;
 	private: System::Windows::Forms::Button^ button8;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 
-	private: System::Windows::Forms::Button^ button10;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	protected:
 
@@ -73,129 +92,143 @@ namespace Project1 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 22.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(146, 53);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(487, 45);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Numerical Methods Calculator";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
-			// 
-			// button1
-			// 
-			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(112, 148);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(97, 60);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Bisection";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this->button2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(286, 148);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(97, 60);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"Secant";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(466, 148);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(126, 60);
-			this->button3->TabIndex = 3;
-			this->button3->Text = L"Integration";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
-			// button6
-			// 
-			this->button6->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button6->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button6->Location = System::Drawing::Point(136, 239);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(184, 60);
-			this->button6->TabIndex = 6;
-			this->button6->Text = L"Lagrange Interpolation";
-			this->button6->UseVisualStyleBackColor = true;
-			// 
-			// button7
-			// 
-			this->button7->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button7->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button7->Location = System::Drawing::Point(382, 239);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(184, 60);
-			this->button7->TabIndex = 7;
-			this->button7->Text = L"Newton Interpolation";
-			this->button7->UseVisualStyleBackColor = true;
 			// 
 			// button8
 			// 
 			this->button8->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button8->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button8->Location = System::Drawing::Point(112, 331);
+			this->button8->Location = System::Drawing::Point(12, 563);
 			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(200, 60);
+			this->button8->Size = System::Drawing::Size(240, 60);
 			this->button8->TabIndex = 8;
 			this->button8->Text = L"Euler and Euler Modified";
 			this->button8->UseVisualStyleBackColor = true;
 			// 
-			// button10
+			// button7
 			// 
-			this->button10->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button10->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button7->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button7->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button10->Location = System::Drawing::Point(411, 331);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(155, 60);
-			this->button10->TabIndex = 10;
-			this->button10->Text = L"Curve Fiting";
-			this->button10->UseVisualStyleBackColor = true;
+			this->button7->Location = System::Drawing::Point(12, 402);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(240, 60);
+			this->button7->TabIndex = 7;
+			this->button7->Text = L"Newton Interpolation";
+			this->button7->UseVisualStyleBackColor = true;
+			// 
+			// button6
+			// 
+			this->button6->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button6->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button6->Location = System::Drawing::Point(12, 324);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(240, 60);
+			this->button6->TabIndex = 6;
+			this->button6->Text = L"Lagrange Interpolation";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click_1);
+			// 
+			// button3
+			// 
+			this->button3->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->Location = System::Drawing::Point(12, 479);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(240, 60);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"Integration";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->Location = System::Drawing::Point(12, 241);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(240, 60);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Secant";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Calibri", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(12, 154);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(240, 60);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Bisection";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 22.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(12, 35);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(487, 45);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Numerical Methods Calculator";
+			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1360, 109);
+			this->panel1->TabIndex = 11;
+			// 
+			// richTextBox1
+			// 
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->richTextBox1->Location = System::Drawing::Point(275, 154);
+			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->Size = System::Drawing::Size(1010, 469);
+			this->richTextBox1->TabIndex = 12;
+			this->richTextBox1->Text = resources->GetString(L"richTextBox1.Text");
+			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::richTextBox1_TextChanged);
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(788, 596);
-			this->Controls->Add(this->button10);
+			this->ClientSize = System::Drawing::Size(1360, 747);
+			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button8);
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->label1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -240,6 +273,31 @@ private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e
 	Project1::LagrangeForm^ lagrangeForm = gcnew Project1::LagrangeForm();
 	lagrangeForm->Show();
 	// this->Hide(); // Uncomment if you want to hide MyForm
+}
+private: System::Void button6_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button8_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void LeftPanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void panel1_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+{
+	
 }
 };
 

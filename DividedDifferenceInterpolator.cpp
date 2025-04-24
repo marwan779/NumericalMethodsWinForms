@@ -5,7 +5,7 @@
 using namespace std;
 
 divide::divide() {
-    // Do nothing, setData will be used instead
+    // Do nothing, setData will be used instead 
 }
 
 void divide::setData(vector<double> xVec, vector<double> yVec, double inputXX, RichTextBox^ outputBox) {
