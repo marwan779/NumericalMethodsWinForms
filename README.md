@@ -129,7 +129,7 @@ TEST(EquationParserTest, HandlesBasicOperations) {
 - Marwan ([@marwan779](https://github.com/marwan779))
 - Abdelhamid ([@Abdelhamid108](https://github.com/Abdelhamid108))
 - Yehia Hamdy ([@YHS003](https://github.com/YHS003))
-
+- Fady Ahsraf ([fady1559](https://github.com/fady1559))
 **Acknowledgments**  
 - Numerical Recipes: The Art of Scientific Computing
 - Boost.Math library inspiration
