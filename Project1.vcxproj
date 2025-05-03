@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="Bisection.cpp" />
     <ClCompile Include="BisectionFrom.cpp" />
+    <ClCompile Include="CurveFittingForm.cpp" />
     <ClCompile Include="DividedDifferenceInterpolator.cpp" />
     <ClCompile Include="EulerMethods.cpp" />
     <ClCompile Include="EulerMethodsForm.cpp" />
@@ -132,12 +133,16 @@
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Newton.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="PolynomialFitter.cpp" />
     <ClCompile Include="Secant.cpp" />
     <ClCompile Include="SecantForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bisection.h" />
     <ClInclude Include="BisectionFrom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CurveFittingForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DividedDifferenceInterpolator.h" />
@@ -160,6 +165,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="PolynomialFitter.h" />
     <ClInclude Include="Secant.h" />
     <ClInclude Include="SecantForm.h" />
   </ItemGroup>
@@ -167,6 +173,9 @@
     <EmbeddedResource Include="BisectionFrom.resx">
       <DependentUpon>BisectionFrom.h</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurveFittingForm.resx">
+      <DependentUpon>CurveFittingForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EulerMethodsForm.resx">
       <DependentUpon>EulerMethodsForm.h</DependentUpon>
