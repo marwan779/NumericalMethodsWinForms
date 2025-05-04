@@ -93,7 +93,7 @@ namespace Project1 {
 			// 
 			// dataGridView1
 			// 
-			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
+			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
 			this->dataGridView1->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
@@ -106,6 +106,8 @@ namespace Project1 {
 			// 
 			// richTextBox1
 			// 
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->richTextBox1->Location = System::Drawing::Point(453, 61);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(405, 454);
