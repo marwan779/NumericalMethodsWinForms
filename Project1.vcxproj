@@ -126,6 +126,7 @@
     <ClCompile Include="DividedDifferenceInterpolator.cpp" />
     <ClCompile Include="EulerMethods.cpp" />
     <ClCompile Include="EulerMethodsForm.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Integration.cpp" />
     <ClCompile Include="IntegrationForm.cpp" />
     <ClCompile Include="LagrangeForm.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="EulerMethodsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="Integration.h" />
     <ClInclude Include="IntegrationForm.h">
       <FileType>CppForm</FileType>

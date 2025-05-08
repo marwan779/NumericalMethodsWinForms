@@ -3,6 +3,8 @@
 #include "PolynomialFitter.h"
 #include <msclr/marshal_cppstd.h>
 #include<vector>
+#include "Helper.h"
+
 namespace Project1 {
 
 	using namespace System;
@@ -173,19 +175,37 @@ namespace Project1 {
 			// Prepare vectors for x and y values
 			std::vector<double> xValues;
 			std::vector<double> yValues;
+			EquationParser Parser;
+			bool Flagx = true;
+			bool Flagy = true;
+
 			// Read X and Y values from DataGridView
 			for (int i = 0; i < dataGridView1->Rows->Count - 1; i++) {
 				if (dataGridView1->Rows[i]->Cells[0]->Value != nullptr &&
 					dataGridView1->Rows[i]->Cells[1]->Value != nullptr) {
 					try {
-						double x = System::Convert::ToDouble(dataGridView1->Rows[i]->Cells[0]->Value);
-						double y = System::Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
+						/*double x = System::Convert::ToDouble(dataGridView1->Rows[i]->Cells[0]->Value);
+						double y = System::Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);*/
+
+						System::String^ managedStrx = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+						double x = Helper::TableHandler(managedStrx, &Flagx);
+						
+						
+
+						System::String^ managedStry = dataGridView1->Rows[i]->Cells[1]->Value->ToString();
+						double y = Helper::TableHandler(managedStry, &Flagy);
+
+						if (Flagy == false || Flagx == false)
+						{
+							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						}
+
 						xValues.push_back(x);
 						yValues.push_back(y);
 					}
-					catch (...)
+					catch (const std::exception& ex)
 					{
-						MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 						return;
 					}
 				}

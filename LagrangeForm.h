@@ -4,6 +4,10 @@
 #include <string>
 #include <msclr/marshal_cppstd.h>
 #include <set>
+#include "Parser.h"
+#include "Helper.h"
+
+
 namespace Project1 {
 
 	using namespace System;
@@ -213,6 +217,10 @@ namespace Project1 {
 		richTextBox1->Clear();
 		std::vector<double> xValues, yValues;
 		double yInput, xInput, xResult=0, yResult=0;
+		EquationParser Parser;
+		bool Flagx = true;
+		bool Flagy = true;
+
 		try {
 			// Check which radio button is selected
 			if (!calcX->Checked && !calcY->Checked) {
@@ -230,13 +238,25 @@ namespace Project1 {
 				}
 
 				try {
-					double x = Convert::ToDouble(row->Cells[0]->Value);
-					double y = Convert::ToDouble(row->Cells[1]->Value);
+					
+
+					System::String^ managedStrx = dataGridView1->Rows[i]->Cells[0]->Value->ToString();
+					double x = Helper::TableHandler(managedStrx, &Flagx);
+
+					System::String^ managedStry = dataGridView1->Rows[i]->Cells[1]->Value->ToString();
+					double y = Helper::TableHandler(managedStry, &Flagy);
+
+					if (Flagy == false || Flagx == false)
+					{
+						MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					}
+
 					xValues.push_back(x);
 					yValues.push_back(y);
 				}
-				catch (...) {
-					MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				catch (const std::exception& ex)
+				{
+					MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 					return;
 				}
 			}

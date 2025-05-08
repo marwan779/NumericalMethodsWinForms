@@ -3,6 +3,8 @@
 #include<iostream>
 #include<msclr/marshal_cppstd.h>
 #include "DividedDifferenceInterpolator.h"
+#include "Parser.h"
+#include "Helper.h"
 
 namespace Project1 {
 
@@ -181,7 +183,9 @@ namespace Project1 {
 	private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
 		std::vector<double> xValues;
 		std::vector<double> yValues;
-
+		EquationParser Parser;
+		bool Flagx = true;
+		bool Flagy = true;
 
 		try
 		{
@@ -189,13 +193,22 @@ namespace Project1 {
 				if (dataGrid->Rows[i]->Cells[0]->Value != nullptr &&
 					dataGrid->Rows[i]->Cells[1]->Value != nullptr) {
 					try {
-						double x = Convert::ToDouble(dataGrid->Rows[i]->Cells[0]->Value);
-						double y = Convert::ToDouble(dataGrid->Rows[i]->Cells[1]->Value);
+						System::String^ managedStrx = dataGrid->Rows[i]->Cells[0]->Value->ToString();
+						double x = Helper::TableHandler(managedStrx, &Flagx);
+
+						System::String^ managedStry = dataGrid->Rows[i]->Cells[1]->Value->ToString();
+						double y = Helper::TableHandler(managedStry, &Flagy);
+
+						if (Flagy == false || Flagx == false)
+						{
+							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						}
 						xValues.push_back(x);
 						yValues.push_back(y);
 					}
-					catch (...) {
-						MessageBox::Show("Please enter valid numeric values in the table.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					catch (const std::exception& ex)
+					{
+						MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 						return;
 					}
 				}

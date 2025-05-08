@@ -2,6 +2,9 @@
 #include <string>
 #include "Integration.h"
 #include <msclr/marshal_cppstd.h>
+#include "Parser.h"
+#include "Helper.h"
+
 
 namespace Project1 {
 
@@ -308,6 +311,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 	using namespace msclr::interop;
 
 	NumericalIntegrator integrator;
+	EquationParser Parser;
 
 
 	try {
@@ -315,6 +319,8 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		std::string eq = msclr::interop::marshal_as<std::string>(Equation->Text);
 		std::string a = marshal_as<std::string>(txtA->Text);
 		std::string b = marshal_as<std::string>(txtB->Text);
+		bool Flagx = true;
+		bool Flagy = true;
 
 		// Set equation and bounds
 		integrator.setEquation(eq);
@@ -349,12 +355,22 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 				if (dataGridTable->Rows[i]->Cells[0]->Value != nullptr &&
 					dataGridTable->Rows[i]->Cells[1]->Value != nullptr) {
 					try {
-						double x = System::Convert::ToDouble(dataGridTable->Rows[i]->Cells[0]->Value);
-						double y = System::Convert::ToDouble(dataGridTable->Rows[i]->Cells[1]->Value);
+						System::String^ managedStrx = dataGridTable->Rows[i]->Cells[0]->Value->ToString();
+						double x = Helper::TableHandler(managedStrx, &Flagx);
+
+						System::String^ managedStry = dataGridTable->Rows[i]->Cells[1]->Value->ToString();
+						double y = Helper::TableHandler(managedStry, &Flagy);
+
+						if (Flagy == false || Flagx == false)
+						{
+							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						}
+
 						table.push_back({ x, y });
 					}
-					catch (...) {
-						MessageBox::Show("Please enter valid numeric values in the table.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					catch (const std::exception& ex)
+					{
+						MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 						return;
 					}
 					
