@@ -95,116 +95,135 @@ namespace Project1 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(62, 47);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(54, 47);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(60, 16);
+			this->label1->Size = System::Drawing::Size(88, 24);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Equation";
 			// 
 			// Equation
 			// 
-			this->Equation->Location = System::Drawing::Point(139, 44);
+			this->Equation->Location = System::Drawing::Point(143, 51);
 			this->Equation->Name = L"Equation";
-			this->Equation->Size = System::Drawing::Size(114, 22);
+			this->Equation->Size = System::Drawing::Size(100, 24);
 			this->Equation->TabIndex = 1;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(73, 122);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(101, 122);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(20, 16);
+			this->label2->Size = System::Drawing::Size(36, 28);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"x0";
 			// 
 			// txtX0
 			// 
-			this->txtX0->Location = System::Drawing::Point(139, 122);
+			this->txtX0->Location = System::Drawing::Point(143, 122);
 			this->txtX0->Name = L"txtX0";
-			this->txtX0->Size = System::Drawing::Size(114, 22);
+			this->txtX0->Size = System::Drawing::Size(100, 24);
 			this->txtX0->TabIndex = 3;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(353, 128);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(309, 128);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(21, 16);
+			this->label3->Size = System::Drawing::Size(31, 24);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"y0";
 			// 
 			// txtY0
 			// 
-			this->txtY0->Location = System::Drawing::Point(432, 122);
+			this->txtY0->Location = System::Drawing::Point(346, 126);
 			this->txtY0->Name = L"txtY0";
-			this->txtY0->Size = System::Drawing::Size(114, 22);
+			this->txtY0->Size = System::Drawing::Size(100, 24);
 			this->txtY0->TabIndex = 5;
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(73, 181);
+			this->label4->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(103, 183);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(14, 16);
+			this->label4->Size = System::Drawing::Size(21, 24);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"h";
+			this->label4->Click += gcnew System::EventHandler(this, &EulerMethodsForm::label4_Click);
 			// 
 			// txtH
 			// 
-			this->txtH->Location = System::Drawing::Point(139, 181);
+			this->txtH->Location = System::Drawing::Point(143, 180);
 			this->txtH->Name = L"txtH";
-			this->txtH->Size = System::Drawing::Size(114, 22);
+			this->txtH->Size = System::Drawing::Size(100, 24);
 			this->txtH->TabIndex = 7;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(353, 187);
+			this->label5->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(283, 180);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(40, 16);
+			this->label5->Size = System::Drawing::Size(57, 24);
 			this->label5->TabIndex = 8;
 			this->label5->Text = L"steps";
 			this->label5->Click += gcnew System::EventHandler(this, &EulerMethodsForm::label5_Click);
 			// 
 			// txtSteps
 			// 
-			this->txtSteps->Location = System::Drawing::Point(432, 181);
+			this->txtSteps->Location = System::Drawing::Point(346, 181);
 			this->txtSteps->Name = L"txtSteps";
-			this->txtSteps->Size = System::Drawing::Size(114, 22);
+			this->txtSteps->Size = System::Drawing::Size(100, 24);
 			this->txtSteps->TabIndex = 9;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(62, 267);
+			this->label6->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(52, 260);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(59, 16);
+			this->label6->Size = System::Drawing::Size(85, 24);
 			this->label6->TabIndex = 10;
 			this->label6->Text = L"Methods";
 			this->label6->Click += gcnew System::EventHandler(this, &EulerMethodsForm::label6_Click);
 			// 
 			// Methods
 			// 
+			this->Methods->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->Methods->FormattingEnabled = true;
 			this->Methods->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Euler", L"Euler Modified" });
-			this->Methods->Location = System::Drawing::Point(139, 264);
+			this->Methods->Location = System::Drawing::Point(143, 257);
 			this->Methods->Name = L"Methods";
-			this->Methods->Size = System::Drawing::Size(138, 24);
+			this->Methods->Size = System::Drawing::Size(121, 32);
 			this->Methods->TabIndex = 11;
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(589, 61);
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->richTextBox1->Location = System::Drawing::Point(673, 47);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(461, 534);
+			this->richTextBox1->Size = System::Drawing::Size(474, 577);
 			this->richTextBox1->TabIndex = 12;
 			this->richTextBox1->Text = L"";
 			// 
 			// calc
 			// 
-			this->calc->Location = System::Drawing::Point(295, 455);
+			this->calc->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->calc->Location = System::Drawing::Point(241, 455);
 			this->calc->Name = L"calc";
-			this->calc->Size = System::Drawing::Size(86, 23);
+			this->calc->Size = System::Drawing::Size(194, 69);
 			this->calc->TabIndex = 13;
 			this->calc->Text = L"calculate";
 			this->calc->UseVisualStyleBackColor = true;
@@ -212,9 +231,9 @@ namespace Project1 {
 			// 
 			// EulerMethodsForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1081, 692);
+			this->ClientSize = System::Drawing::Size(1159, 757);
 			this->Controls->Add(this->calc);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->Methods);
@@ -274,22 +293,7 @@ namespace Project1 {
 				return;
 			}*/
 
-			if (!Int32::TryParse(txtSteps->Text, steps))
-			{
-				MessageBox::Show(" Number of Steps  must be Valid Number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
 
-			}
-
-			if (steps <= 0) {
-				MessageBox::Show("Number of steps must be greater than 0.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-			if (Methods->SelectedIndex == -1)
-			{
-				MessageBox::Show("Please select a method first.", "Missing Selection", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
-			}
 			// Clear previous output
 			richTextBox1->Clear();
 			try
@@ -301,6 +305,7 @@ namespace Project1 {
 				if (Flagx0 == false)
 				{
 					MessageBox::Show("Invalid X0 value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
 				}
 
 				System::String^ managedStry = txtY0->Text->ToString();
@@ -309,6 +314,7 @@ namespace Project1 {
 				if (Flagy0 == false)
 				{
 					MessageBox::Show("Invalid Y0 value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
 				}
 
 				System::String^ managedStrh = txtH->Text->ToString();
@@ -316,14 +322,31 @@ namespace Project1 {
 
 				if (Flagh == false)
 				{
-					MessageBox::Show("Invalid X value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					MessageBox::Show("Invalid h value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
 				}
 
 				if (h <= 0) {
 					MessageBox::Show("Step size must be greater than 0.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 					return;
 				}
+				//get steps 
+				if (!Int32::TryParse(txtSteps->Text, steps))
+				{
+					MessageBox::Show(" Number of Steps  must be Valid Number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
 
+				}
+
+				if (steps <= 0) {
+					MessageBox::Show("Number of steps must be greater than 0.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+				}
+				if (Methods->SelectedIndex == -1)
+				{
+					MessageBox::Show("Please select a method first.", "Missing Selection", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
+				}
 
 				// Call the appropriate method
 				if (method == "Euler") {
@@ -347,15 +370,19 @@ namespace Project1 {
 		catch (const std::exception& ex) {
 			// Catch native C++ exceptions (e.g., from parser)
 			MessageBox::Show("An error occurred: " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 
 		catch (Exception^ ex) { // Use a handle (^) instead of a reference (&)
 			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-
+			return;
 		}
 		catch (...) {
 			MessageBox::Show("An unknown error occurred.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 	}
-	};
+	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

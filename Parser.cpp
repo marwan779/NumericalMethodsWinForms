@@ -44,7 +44,7 @@ bool EquationParser::isConstant(const string& token) {
 // Validate the tokens to ensure the equation is valid
 void EquationParser::validateTokens() {
     int paren_count = 0;
-    bool has_x = false, has_y = false;
+    has_x = false, has_y = false;
 
     for (size_t i = 0; i < tokens.size(); i++) {
         const string& token = tokens[i];
@@ -204,7 +204,7 @@ void EquationParser::convertToPostfix() {
 
 // Evaluate the postfix expression
 double EquationParser::evaluate(double x_value) {
-    bool has_x = false, has_y = false;
+    has_x = false, has_y = false;
     for (const auto& token : postfix) {
         if (token == "x") has_x = true;
         if (token == "y") has_y = true;

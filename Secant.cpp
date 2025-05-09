@@ -28,6 +28,8 @@ double SecantSolver::solve() {
     Parser.parseEquation(expr);
     double f1 = Parser.evaluate(x1);
 
+  
+
     double x2;
 
     for (int i = 0; i < maxIter; ++i) {
