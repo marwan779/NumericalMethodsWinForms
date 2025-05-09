@@ -81,6 +81,8 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txtN;
 	private: System::Windows::Forms::Button^ calculate;
+	private: System::Windows::Forms::Button^ clear;
+
 
 	private:
 		/// <summary>
@@ -110,6 +112,7 @@ namespace Project1 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtN = (gcnew System::Windows::Forms::TextBox());
 			this->calculate = (gcnew System::Windows::Forms::Button());
+			this->clear = (gcnew System::Windows::Forms::Button());
 			this->Table_choise->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridTable))->BeginInit();
 			this->SuspendLayout();
@@ -286,11 +289,24 @@ namespace Project1 {
 			this->calculate->UseVisualStyleBackColor = true;
 			this->calculate->Click += gcnew System::EventHandler(this, &IntegrationForm::calculate_Click);
 			// 
+			// clear
+			// 
+			this->clear->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->clear->Location = System::Drawing::Point(46, 728);
+			this->clear->Name = L"clear";
+			this->clear->Size = System::Drawing::Size(107, 39);
+			this->clear->TabIndex = 14;
+			this->clear->Text = L"clear";
+			this->clear->UseVisualStyleBackColor = true;
+			this->clear->Click += gcnew System::EventHandler(this, &IntegrationForm::button1_Click);
+			// 
 			// IntegrationForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1285, 779);
+			this->Controls->Add(this->clear);
 			this->Controls->Add(this->calculate);
 			this->Controls->Add(this->txtN);
 			this->Controls->Add(this->label2);
@@ -345,8 +361,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		bool Flagx = true;
 		bool Flagy = true;
 
-		// Set equation and bounds
-		integrator.setEquation(eq);
+		
 		// Check if a or b contains variables like x or y
 		if (a.find("x") != std::string::npos || a.find("y") != std::string::npos|| 
 			b.find("x")!=std::string::npos||b.find("y")!= std::string::npos) {
@@ -360,6 +375,9 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		// If user chose to generate values
 		if (GenerateButton->Checked) {
 			try {
+				// Set equation 
+
+				integrator.setEquation(eq);
 				int points = System::Convert::ToInt32(txtN->Text);
 				points = points + 1;
 				integrator.setPoints(points);
@@ -455,6 +473,15 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 
 };
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Clear all text boxes and data grid
+	txtA->Clear();
+	txtB->Clear();
+	Equation->Clear();
+	dataGridTable->Rows->Clear();
+	dataGridTable->Rows->Add();
+	richTextBox1->Clear();
 }
 };
 }
