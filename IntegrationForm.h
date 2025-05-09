@@ -413,7 +413,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 					}
 					catch (const std::exception& ex)
 					{
-						MessageBox::Show("An error occurred in row: " + i+" , " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						MessageBox::Show("An error occurred in row: " + i+ " , " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 						return;
 					}
 					

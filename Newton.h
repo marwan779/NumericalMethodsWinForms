@@ -202,18 +202,21 @@ namespace Project1 {
 						if (Flagy == false || Flagx == false)
 						{
 							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							richTextBox1->Clear();
 						}
 						xValues.push_back(x);
 						yValues.push_back(y);
 					}
 					catch (const std::exception& ex)
 					{
-						MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						MessageBox::Show("An error occurred in row: " + i + " " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						richTextBox1->Clear();
 						return;
 					}
 				}
 				else {
 					MessageBox::Show("Please fill all X and Y values.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Clear();
 					return;
 				}
 			}
@@ -221,6 +224,7 @@ namespace Project1 {
 			// Check number of points
 			if (xValues.size() < 2 || xValues.size() > 20) {
 				MessageBox::Show("Please enter at least 2 points and no more than 20.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				richTextBox1->Clear();
 				return;
 			}
 
@@ -229,6 +233,7 @@ namespace Project1 {
 				for (int j = i + 1; j < xValues.size(); j++) {
 					if (xValues[i] == xValues[j]) {
 						MessageBox::Show("X values must be distinct (no duplicates).", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Clear();
 						return;
 					}
 				}
@@ -238,6 +243,7 @@ namespace Project1 {
 			double xx;
 			if (!Double::TryParse(xx_value->Text, xx)) {
 				MessageBox::Show("Please enter a valid X value to evaluate.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				richTextBox1->Clear();
 				return;
 			}
 
@@ -249,11 +255,12 @@ namespace Project1 {
 		catch (const std::exception&)
 		{
 			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-
+			richTextBox1->Clear();
 		}
 		catch (...)
 		{
 			MessageBox::Show("An unexpected error occurred.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			richTextBox1->Clear();
 		}
 		// Read X and Y values from DataGridView
 

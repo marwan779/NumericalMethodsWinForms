@@ -225,6 +225,7 @@ namespace Project1 {
 			// Check which radio button is selected
 			if (!calcX->Checked && !calcY->Checked) {
 				MessageBox::Show("Please select whether to calculate X or Y.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				richTextBox1->Text = "";
 				return;
 			}
 			
@@ -234,6 +235,7 @@ namespace Project1 {
 
 				if (row->Cells[0]->Value == nullptr || row->Cells[1]->Value == nullptr) {
 					MessageBox::Show("Missing value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Text = "";
 					return;
 				}
 
@@ -256,13 +258,15 @@ namespace Project1 {
 				}
 				catch (const std::exception& ex)
 				{
-					MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					MessageBox::Show("An error occurred in row: " + i + " " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					richTextBox1->Text = "";
 					return;
 				}
 			}
 
 			if (xValues.size() < 2) {
 				MessageBox::Show("Please enter at least two data points.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				richTextBox1->Text = "";
 				return;
 			}
 
@@ -274,6 +278,7 @@ namespace Project1 {
 			for (double val : xValues) {  // Check duplicates in xValues
 				if (!XuniqueCheck.insert(val).second) {
 					MessageBox::Show("Duplicate X value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Text = "";
 					return;
 				}
 			}
@@ -281,6 +286,8 @@ namespace Project1 {
 			for (double val : yValues) {  // Check duplicates in yValues
 				if (!YuniqueCheck.insert(val).second) {
 					MessageBox::Show("Duplicate Y value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Text = "";
+					richTextBox1->Text = "";
 					return;
 				}
 			}
@@ -291,11 +298,14 @@ namespace Project1 {
 				if (calcX->Checked) {
 					if (String::IsNullOrWhiteSpace(txtY->Text)) {
 						MessageBox::Show("Please enter a value for Y.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Text = "";
 						return;
 					}
 					else if (!Double::TryParse(txtY->Text, yInput))
 					{	
 						MessageBox::Show("Please enter a valid Y value to evaluate.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Text = "";
+						return;
 					}
 					double xResult = interpolator.interpolateInverse(yInput);
 					richTextBox1->AppendText("Interpolated X = " + xResult.ToString("F6") + "\n");
@@ -303,24 +313,32 @@ namespace Project1 {
 				else if (calcY->Checked) {
 					if (String::IsNullOrWhiteSpace(txtX->Text)) {
 						MessageBox::Show("Please enter a value for X.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Text = "";
 						return;
 					}
 
 					else if (!Double::TryParse(txtX->Text, xInput))
 					{
 						MessageBox::Show("Please enter a valid X value to evaluate.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Text = "";
+						return;
 					}
 					double yResult = interpolator.interpolateY(xInput);
 					richTextBox1->AppendText("Interpolated Y = " + yResult.ToString("F6") + "\n");
 				}
 			}
 			catch (const std::exception& e) {
+				
 				MessageBox::Show("Error: " + gcnew String(e.what()), "Computation Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				richTextBox1->Text = "";
+				return;
 			}
 		}
 		catch (...)
 		{
 			MessageBox::Show("An error occurred while processing the data.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			richTextBox1->Text = "";
+			return;
 		}
 	}
 private: System::Void calcY_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {

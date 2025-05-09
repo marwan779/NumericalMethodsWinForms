@@ -238,15 +238,27 @@ namespace Project1 {
 
 				std::string equation = msclr::interop::marshal_as<std::string>(textBox1->Text);
 				try {
-					// Temporary hardcoded values for a, b, tol, and maxIter
 					 a = Convert::ToInt32(textBox2->Text);
 					 b = Convert::ToInt32(textBox5->Text);
 					 tol = Convert::ToDouble(textBox3->Text);
 					 maxIter = Convert::ToInt32(textBox4->Text);
+					 if (maxIter <= 0)
+					 {
+						 MessageBox::Show("Maximum iterations must be positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						 richTextBox1->Text = "";
+						 return;
+					 }
+					 if (tol <= 0)
+					 {
+						 MessageBox::Show("Tolerance must be positive number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						 richTextBox1->Text = "";
+						 return;
+					 }
 				}
 				catch (System::FormatException^ ex)
 				{
 					MessageBox::Show("Invalid input format. Please enter valid numbers.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					richTextBox1->Text = "";
 					return;
 				}
 
@@ -261,11 +273,13 @@ namespace Project1 {
 			else
 			{
 				//richTextBox1->Text = "Invalid or missing values";
+				richTextBox1->Text = "";
 				MessageBox::Show("Invalid or missing values", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			}
 		}
 		catch (exception ex)
 		{
+			richTextBox1->Text = "";
 			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
