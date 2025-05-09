@@ -60,6 +60,7 @@ namespace Project1 {
 	private: System::Windows::Forms::TextBox^ txtX;
 	private: System::Windows::Forms::Button^ Calc;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -88,6 +89,7 @@ namespace Project1 {
 			this->txtX = (gcnew System::Windows::Forms::TextBox());
 			this->Calc = (gcnew System::Windows::Forms::Button());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -99,7 +101,7 @@ namespace Project1 {
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 26;
-			this->dataGridView1->Size = System::Drawing::Size(374, 406);
+			this->dataGridView1->Size = System::Drawing::Size(374, 419);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// groupBox1
@@ -171,9 +173,11 @@ namespace Project1 {
 			// 
 			// Calc
 			// 
-			this->Calc->Location = System::Drawing::Point(403, 699);
+			this->Calc->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Calc->Location = System::Drawing::Point(404, 709);
 			this->Calc->Name = L"Calc";
-			this->Calc->Size = System::Drawing::Size(132, 40);
+			this->Calc->Size = System::Drawing::Size(148, 56);
 			this->Calc->TabIndex = 6;
 			this->Calc->Text = L"Calculate";
 			this->Calc->UseVisualStyleBackColor = true;
@@ -183,18 +187,31 @@ namespace Project1 {
 			// 
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->richTextBox1->Location = System::Drawing::Point(492, 139);
+			this->richTextBox1->Location = System::Drawing::Point(575, 139);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(425, 519);
 			this->richTextBox1->TabIndex = 7;
 			this->richTextBox1->Text = L"";
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(13, 678);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(89, 39);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"clear";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &LagrangeForm::button1_Click);
 			// 
 			// LagrangeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Control;
-			this->ClientSize = System::Drawing::Size(929, 844);
+			this->ClientSize = System::Drawing::Size(1024, 844);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->Calc);
 			this->Controls->Add(this->txtX);
@@ -251,6 +268,8 @@ namespace Project1 {
 					if (Flagy == false || Flagx == false)
 					{
 						MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+						richTextBox1->Text = "";
+						return;
 					}
 
 					xValues.push_back(x);
@@ -272,9 +291,7 @@ namespace Project1 {
 
 			// Check for duplicate x or y values
 			std::set<double> XuniqueCheck;
-			std::set<double> YuniqueCheck;
-
-
+		
 			for (double val : xValues) {  // Check duplicates in xValues
 				if (!XuniqueCheck.insert(val).second) {
 					MessageBox::Show("Duplicate X value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
@@ -282,16 +299,6 @@ namespace Project1 {
 					return;
 				}
 			}
-
-			for (double val : yValues) {  // Check duplicates in yValues
-				if (!YuniqueCheck.insert(val).second) {
-					MessageBox::Show("Duplicate Y value found. Cannot interpolate.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					richTextBox1->Text = "";
-					richTextBox1->Text = "";
-					return;
-				}
-			}
-
 			LagrangeInterpolator interpolator(xValues, yValues);
 
 			try {
@@ -355,6 +362,19 @@ private: System::Void calcX_CheckedChanged(System::Object^ sender, System::Event
 		txtX->Enabled = false;
 		txtY->Clear();
 	}
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Clear all text boxes and data grid
+	txtX->Clear();
+	txtY->Clear();
+	dataGridView1->Rows->Clear();
+	dataGridView1->Rows->Add(nullptr, nullptr);
+	richTextBox1->Clear();
+	calcX->Checked = false;
+	calcY->Checked = false;
+	// Reset the enabled state of the text boxes
+	txtX->Enabled = false;
+	txtY->Enabled = false;
 }
 };
 }

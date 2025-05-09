@@ -53,6 +53,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ xx_value;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -78,6 +79,7 @@ namespace Project1 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->xx_value = (gcnew System::Windows::Forms::TextBox());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGrid))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -111,7 +113,7 @@ namespace Project1 {
 			this->btnSubmit->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnSubmit->Location = System::Drawing::Point(89, 655);
+			this->btnSubmit->Location = System::Drawing::Point(90, 682);
 			this->btnSubmit->Name = L"btnSubmit";
 			this->btnSubmit->Size = System::Drawing::Size(116, 58);
 			this->btnSubmit->TabIndex = 4;
@@ -124,7 +126,7 @@ namespace Project1 {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(12, 605);
+			this->label2->Location = System::Drawing::Point(8, 627);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(104, 34);
 			this->label2->TabIndex = 5;
@@ -133,7 +135,7 @@ namespace Project1 {
 			// 
 			// xx_value
 			// 
-			this->xx_value->Location = System::Drawing::Point(112, 615);
+			this->xx_value->Location = System::Drawing::Point(112, 638);
 			this->xx_value->Name = L"xx_value";
 			this->xx_value->Size = System::Drawing::Size(142, 23);
 			this->xx_value->TabIndex = 6;
@@ -154,6 +156,18 @@ namespace Project1 {
 			this->richTextBox1->Text = L"";
 			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &Newton::richTextBox1_TextChanged);
 			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(14, 554);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(105, 46);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"clear";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Newton::button1_Click);
+			// 
 			// Newton
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
@@ -161,6 +175,7 @@ namespace Project1 {
 			this->AutoSize = true;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->ClientSize = System::Drawing::Size(1249, 767);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->xx_value);
 			this->Controls->Add(this->label2);
@@ -203,6 +218,7 @@ namespace Project1 {
 						{
 							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 							richTextBox1->Clear();
+							return;
 						}
 						xValues.push_back(x);
 						yValues.push_back(y);
@@ -256,11 +272,13 @@ namespace Project1 {
 		{
 			MessageBox::Show("An error happened when parsing the equation, Make sure to enter a vaild equation.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			richTextBox1->Clear();
+			return;
 		}
 		catch (...)
 		{
 			MessageBox::Show("An unexpected error occurred.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			richTextBox1->Clear();
+			return;
 		}
 		// Read X and Y values from DataGridView
 
@@ -279,5 +297,11 @@ namespace Project1 {
 	}
 	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		dataGrid->Rows->Clear();
+		dataGrid->Rows->Add();
+		richTextBox1->Clear();
+		xx_value->Clear();
+	}
+};
 }

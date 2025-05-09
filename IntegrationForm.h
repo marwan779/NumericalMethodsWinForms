@@ -4,6 +4,7 @@
 #include <msclr/marshal_cppstd.h>
 #include "Parser.h"
 #include "Helper.h"
+#include <set>
 
 
 namespace Project1 {
@@ -291,6 +292,7 @@ namespace Project1 {
 			// 
 			// clear
 			// 
+			this->clear->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->clear->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->clear->Location = System::Drawing::Point(46, 728);
@@ -366,6 +368,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		if (a.find("x") != std::string::npos || a.find("y") != std::string::npos|| 
 			b.find("x")!=std::string::npos||b.find("y")!= std::string::npos) {
 			MessageBox::Show("Please enter valid numeric values for a and b.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			richTextBox1->Clear();
 			return;
 		}
 		else {
@@ -385,6 +388,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 			}
 			catch (System::FormatException^ ex) {
 				MessageBox::Show("Please enter a valid number of points.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				richTextBox1->Clear();
 				return;
 			}
 			
@@ -392,6 +396,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		// If user entered values manually in the table
 		else {
 			std::vector<std::pair<double, double>> table;
+			std::set<double> xValues;
 
 			for (int i = 0; i < dataGridTable->Rows->Count - 1; i++) {
 				if (dataGridTable->Rows[i]->Cells[0]->Value != nullptr &&
@@ -406,24 +411,32 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 						if (Flagy == false || Flagx == false)
 						{
 							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							richTextBox1->Clear();
 							return;
 						}
+						if (xValues.count(x)) {
+							MessageBox::Show("Duplicate X value found in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							richTextBox1->Clear();
+							return;
+						}
+						xValues.insert(x);
 
 						table.push_back({ x, y });
 					}
 					catch (const std::exception& ex)
 					{
 						MessageBox::Show("An error occurred in row: " + i+ " , " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						richTextBox1->Clear();
 						return;
 					}
 					
 				}
 				else {
 					MessageBox::Show("Please fill all X and Y values.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Clear();
 					return;
 				}
 			}
-
 			integrator.loadTable(table);
 		}
 
@@ -455,6 +468,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		}
 		if (!any_checked) {
 			MessageBox::Show("Please select at least one method.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			richTextBox1->Clear();
 			return;
 		}
 		
@@ -463,11 +477,13 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 	catch (const std::exception& e) {
 
 		MessageBox::Show("An error occurred: " + gcnew System::String(e.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		richTextBox1->Clear();
 		return;
 	}
 	catch (...)
 	{
 		MessageBox::Show("An error occurred: " + gcnew System::String("Unknown Error"), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		richTextBox1->Clear();
 		return;
 	}
 
