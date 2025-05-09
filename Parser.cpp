@@ -57,7 +57,7 @@ void EquationParser::parseEquation(const string& equation) {
 
     // First check for any non-ASCII characters
     for (char c : equation) {
-        if (static_cast<unsigned char>(c) > 127) {
+        if (!isValidCharacter(c)) {
             throw runtime_error("Non-English characters are not allowed in equations");
         }
     }

@@ -227,6 +227,8 @@ namespace Project1 {
 
 
 	private: System::Void button1_click(System::Object^ sender, System::EventArgs^ e) {
+		int a, b,maxIter;
+		double tol;
 
 		try
 		{
@@ -235,12 +237,18 @@ namespace Project1 {
 				// Get equation from TextBox
 
 				std::string equation = msclr::interop::marshal_as<std::string>(textBox1->Text);
-
-				// Temporary hardcoded values for a, b, tol, and maxIter
-				int a = Convert::ToInt32(textBox2->Text);
-				int b = Convert::ToInt32(textBox5->Text);
-				double tol = Convert::ToDouble(textBox3->Text);
-				int maxIter = Convert::ToInt32(textBox4->Text);
+				try {
+					// Temporary hardcoded values for a, b, tol, and maxIter
+					 a = Convert::ToInt32(textBox2->Text);
+					 b = Convert::ToInt32(textBox5->Text);
+					 tol = Convert::ToDouble(textBox3->Text);
+					 maxIter = Convert::ToInt32(textBox4->Text);
+				}
+				catch (System::FormatException^ ex)
+				{
+					MessageBox::Show("Invalid input format. Please enter valid numbers.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+				}
 
 				// Call the native class
 				bisection solver(equation, a, b, tol, maxIter);
