@@ -39,6 +39,8 @@ private:
 
 public:
     EquationParser(); // Constructor
+    bool has_x = false, has_y = false;
+
 
     // Set the flag to allow or disallow both x and y in the same expression
     void setAllowXY(bool allow);

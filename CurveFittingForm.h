@@ -80,15 +80,17 @@ namespace Project1 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(58, 64);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(52, 17);
+			this->label1->Size = System::Drawing::Size(85, 28);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Degree";
 			// 
 			// txtDeg
 			// 
-			this->txtDeg->Location = System::Drawing::Point(117, 64);
+			this->txtDeg->Location = System::Drawing::Point(149, 68);
 			this->txtDeg->Name = L"txtDeg";
 			this->txtDeg->Size = System::Drawing::Size(100, 24);
 			this->txtDeg->TabIndex = 1;
@@ -99,28 +101,31 @@ namespace Project1 {
 			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
 			this->dataGridView1->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(61, 120);
+			this->dataGridView1->Location = System::Drawing::Point(61, 106);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 26;
-			this->dataGridView1->Size = System::Drawing::Size(315, 329);
+			this->dataGridView1->Size = System::Drawing::Size(403, 476);
 			this->dataGridView1->TabIndex = 2;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CurveFittingForm::dataGridView1_CellContentClick);
 			// 
 			// richTextBox1
 			// 
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->richTextBox1->Location = System::Drawing::Point(453, 61);
+			this->richTextBox1->Location = System::Drawing::Point(678, 64);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(405, 454);
+			this->richTextBox1->Size = System::Drawing::Size(460, 571);
 			this->richTextBox1->TabIndex = 3;
 			this->richTextBox1->Text = L"";
 			// 
 			// Calc
 			// 
-			this->Calc->Location = System::Drawing::Point(367, 534);
+			this->Calc->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Calc->Location = System::Drawing::Point(377, 624);
 			this->Calc->Name = L"Calc";
-			this->Calc->Size = System::Drawing::Size(154, 59);
+			this->Calc->Size = System::Drawing::Size(204, 83);
 			this->Calc->TabIndex = 4;
 			this->Calc->Text = L"Calc";
 			this->Calc->UseVisualStyleBackColor = true;
@@ -128,9 +133,9 @@ namespace Project1 {
 			// 
 			// clear
 			// 
-			this->clear->Location = System::Drawing::Point(61, 455);
+			this->clear->Location = System::Drawing::Point(61, 588);
 			this->clear->Name = L"clear";
-			this->clear->Size = System::Drawing::Size(75, 23);
+			this->clear->Size = System::Drawing::Size(124, 47);
 			this->clear->TabIndex = 5;
 			this->clear->Text = L"Clear";
 			this->clear->UseVisualStyleBackColor = true;
@@ -140,15 +145,17 @@ namespace Project1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(870, 605);
+			this->ClientSize = System::Drawing::Size(1150, 759);
 			this->Controls->Add(this->clear);
 			this->Controls->Add(this->Calc);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->txtDeg);
 			this->Controls->Add(this->label1);
+			this->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->Name = L"CurveFittingForm";
-			this->Text = L"+";
+			this->Text = L"Curve Fitting Method";
+			this->Load += gcnew System::EventHandler(this, &CurveFittingForm::CurveFittingForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -198,6 +205,7 @@ namespace Project1 {
 						if (Flagy == false || Flagx == false)
 						{
 							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							return;
 						}
 
 						xValues.push_back(x);
@@ -242,9 +250,11 @@ namespace Project1 {
 		}
 		catch (const std::exception& ex) {
 			MessageBox::Show(gcnew String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 		catch (...) {
 			MessageBox::Show("An error occurred: Unknown Error", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 	}
 private: System::Void clear_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -252,6 +262,10 @@ private: System::Void clear_Click(System::Object^ sender, System::EventArgs^ e) 
 	dataGridView1->Rows->Clear();
 	dataGridView1->Rows->Add();
 	richTextBox1->Clear();
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void CurveFittingForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
