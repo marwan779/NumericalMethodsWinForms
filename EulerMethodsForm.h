@@ -156,7 +156,7 @@ namespace Project1 {
 			this->label4->Size = System::Drawing::Size(21, 24);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"h";
-			this->label4->Click += gcnew System::EventHandler(this, &EulerMethodsForm::label4_Click);
+			//this->label4->Click += gcnew System::EventHandler(this, &EulerMethodsForm::label4_Click);
 			// 
 			// txtH
 			// 
