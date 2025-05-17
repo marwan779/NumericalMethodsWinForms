@@ -274,6 +274,7 @@ namespace Project1 {
 
 			if (equation.empty()) {
 				MessageBox::Show("Equation cannot be empty.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				richTextBox1->Clear();
 				return;
 			}
 			/*if (!Double::TryParse(txtX0->Text,x0))
@@ -305,6 +306,7 @@ namespace Project1 {
 				if (Flagx0 == false)
 				{
 					MessageBox::Show("Invalid X0 value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Clear();
 					return;
 				}
 
@@ -314,7 +316,6 @@ namespace Project1 {
 				if (Flagy0 == false)
 				{
 					MessageBox::Show("Invalid Y0 value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					return;
 				}
 
 				System::String^ managedStrh = txtH->Text->ToString();
@@ -322,31 +323,22 @@ namespace Project1 {
 
 				if (Flagh == false)
 				{
-					MessageBox::Show("Invalid h value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					return;
+					MessageBox::Show("Invalid X value in row ", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 				}
 
 				if (h <= 0) {
 					MessageBox::Show("Step size must be greater than 0.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					richTextBox1->Clear();
 					return;
 				}
 				//get steps 
 				if (!Int32::TryParse(txtSteps->Text, steps))
 				{
 					MessageBox::Show(" Number of Steps  must be Valid Number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					richTextBox1->Clear();
 					return;
+				}
 
-				}
-
-				if (steps <= 0) {
-					MessageBox::Show("Number of steps must be greater than 0.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-					return;
-				}
-				if (Methods->SelectedIndex == -1)
-				{
-					MessageBox::Show("Please select a method first.", "Missing Selection", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					return;
-				}
 
 				// Call the appropriate method
 				if (method == "Euler") {
@@ -362,6 +354,7 @@ namespace Project1 {
 			catch (const std::exception& ex)
 			{
 				MessageBox::Show("An error occurred: " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				richTextBox1->Clear();
 				return;
 			}
 			// Show output in RichTextBox
@@ -370,19 +363,15 @@ namespace Project1 {
 		catch (const std::exception& ex) {
 			// Catch native C++ exceptions (e.g., from parser)
 			MessageBox::Show("An error occurred: " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
 		}
 
 		catch (Exception^ ex) { // Use a handle (^) instead of a reference (&)
 			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
+
 		}
 		catch (...) {
 			MessageBox::Show("An unknown error occurred.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
 		}
-	}
-	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 };
 }

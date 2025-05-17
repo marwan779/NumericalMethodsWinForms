@@ -1,7 +1,7 @@
 #include "Helper.h"
 #include <string>
 #include <msclr/marshal_cppstd.h>
-using namespace stdext;
+using namespace std;
 
 double Helper::TableHandler(System::String^ TableData, bool* flag)
 {
@@ -9,7 +9,7 @@ double Helper::TableHandler(System::String^ TableData, bool* flag)
 
 	EquationParser Parser;
 	Parser.parseEquation(tempx);
-	if (Parser.has_x || Parser.has_y)
+	if (Parser.hasX() || Parser.hasY())
 	{
 		*flag = false;
 		return 0.0;
