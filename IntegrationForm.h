@@ -4,6 +4,7 @@
 #include <msclr/marshal_cppstd.h>
 #include "Parser.h"
 #include "Helper.h"
+#include <set>
 
 
 namespace Project1 {
@@ -81,6 +82,8 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ txtN;
 	private: System::Windows::Forms::Button^ calculate;
+	private: System::Windows::Forms::Button^ clear;
+
 
 	private:
 		/// <summary>
@@ -110,17 +113,21 @@ namespace Project1 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtN = (gcnew System::Windows::Forms::TextBox());
 			this->calculate = (gcnew System::Windows::Forms::Button());
+			this->clear = (gcnew System::Windows::Forms::Button());
 			this->Table_choise->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridTable))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// Table_choise
 			// 
+			this->Table_choise->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->Table_choise->Controls->Add(this->AddButton);
 			this->Table_choise->Controls->Add(this->GenerateButton);
+			this->Table_choise->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->Table_choise->Location = System::Drawing::Point(41, 103);
 			this->Table_choise->Name = L"Table_choise";
-			this->Table_choise->Size = System::Drawing::Size(230, 130);
+			this->Table_choise->Size = System::Drawing::Size(328, 140);
 			this->Table_choise->TabIndex = 0;
 			this->Table_choise->TabStop = false;
 			this->Table_choise->Text = L"Table_choise";
@@ -130,9 +137,9 @@ namespace Project1 {
 			// 
 			this->AddButton->AutoSize = true;
 			this->AddButton->Checked = true;
-			this->AddButton->Location = System::Drawing::Point(22, 51);
+			this->AddButton->Location = System::Drawing::Point(22, 83);
 			this->AddButton->Name = L"AddButton";
-			this->AddButton->Size = System::Drawing::Size(95, 21);
+			this->AddButton->Size = System::Drawing::Size(171, 38);
 			this->AddButton->TabIndex = 0;
 			this->AddButton->TabStop = true;
 			this->AddButton->Text = L"Add values";
@@ -142,9 +149,9 @@ namespace Project1 {
 			// 
 			this->GenerateButton->AutoSize = true;
 			this->GenerateButton->FlatAppearance->CheckedBackColor = System::Drawing::Color::Black;
-			this->GenerateButton->Location = System::Drawing::Point(22, 24);
+			this->GenerateButton->Location = System::Drawing::Point(22, 39);
 			this->GenerateButton->Name = L"GenerateButton";
-			this->GenerateButton->Size = System::Drawing::Size(117, 21);
+			this->GenerateButton->Size = System::Drawing::Size(219, 38);
 			this->GenerateButton->TabIndex = 0;
 			this->GenerateButton->Text = L"Generate table";
 			this->GenerateButton->UseVisualStyleBackColor = true;
@@ -152,7 +159,9 @@ namespace Project1 {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Anchor = System::Windows::Forms::AnchorStyles::Right;
+			this->richTextBox1->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->richTextBox1->Location = System::Drawing::Point(850, 103);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->Size = System::Drawing::Size(423, 552);
@@ -161,28 +170,27 @@ namespace Project1 {
 			// 
 			// dataGridTable
 			// 
-			this->dataGridTable->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridTable->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->dataGridTable->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dataGridTable->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
 			this->dataGridTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridTable->Location = System::Drawing::Point(44, 239);
+			this->dataGridTable->Location = System::Drawing::Point(41, 264);
 			this->dataGridTable->Name = L"dataGridTable";
 			this->dataGridTable->RowHeadersWidth = 51;
 			this->dataGridTable->RowTemplate->Height = 26;
-			this->dataGridTable->Size = System::Drawing::Size(275, 346);
+			this->dataGridTable->Size = System::Drawing::Size(328, 457);
 			this->dataGridTable->TabIndex = 2;
 			// 
 			// MethodTable
 			// 
-			this->MethodTable->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->MethodTable->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->MethodTable->BackColor = System::Drawing::Color::LightSteelBlue;
 			this->MethodTable->CheckOnClick = true;
 			this->MethodTable->Font = (gcnew System::Drawing::Font(L"Tahoma", 28.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->MethodTable->FormattingEnabled = true;
 			this->MethodTable->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Simpson 1/3", L"Simpson 3/8", L"Trapezoidal" });
-			this->MethodTable->Location = System::Drawing::Point(397, 307);
+			this->MethodTable->Location = System::Drawing::Point(397, 312);
 			this->MethodTable->Name = L"MethodTable";
 			this->MethodTable->Size = System::Drawing::Size(402, 181);
 			this->MethodTable->TabIndex = 3;
@@ -190,84 +198,117 @@ namespace Project1 {
 			// 
 			// label1
 			// 
+			this->label1->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(41, 598);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(505, 57);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(15, 17);
+			this->label1->Size = System::Drawing::Size(31, 36);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"a";
 			// 
 			// txtA
 			// 
-			this->txtA->Location = System::Drawing::Point(63, 591);
+			this->txtA->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->txtA->Location = System::Drawing::Point(541, 68);
 			this->txtA->Name = L"txtA";
 			this->txtA->Size = System::Drawing::Size(100, 24);
 			this->txtA->TabIndex = 5;
 			// 
 			// label3
 			// 
+			this->label3->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(38, 638);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(508, 106);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(16, 17);
+			this->label3->Size = System::Drawing::Size(32, 36);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"b";
 			// 
 			// txtB
 			// 
-			this->txtB->Location = System::Drawing::Point(63, 631);
+			this->txtB->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->txtB->Location = System::Drawing::Point(541, 110);
 			this->txtB->Name = L"txtB";
 			this->txtB->Size = System::Drawing::Size(100, 24);
 			this->txtB->TabIndex = 7;
 			// 
 			// label12
 			// 
+			this->label12->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->label12->AutoSize = true;
+			this->label12->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label12->Location = System::Drawing::Point(41, 64);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(62, 17);
+			this->label12->Size = System::Drawing::Size(101, 28);
 			this->label12->TabIndex = 8;
 			this->label12->Text = L"Equation";
 			// 
 			// Equation
 			// 
-			this->Equation->Location = System::Drawing::Point(109, 61);
+			this->Equation->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->Equation->Location = System::Drawing::Point(148, 68);
 			this->Equation->Name = L"Equation";
 			this->Equation->Size = System::Drawing::Size(100, 24);
 			this->Equation->TabIndex = 9;
 			// 
 			// label2
 			// 
+			this->label2->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(38, 673);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(508, 144);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(16, 17);
+			this->label2->Size = System::Drawing::Size(32, 36);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"n";
 			this->label2->Click += gcnew System::EventHandler(this, &IntegrationForm::label2_Click);
 			// 
 			// txtN
 			// 
-			this->txtN->Location = System::Drawing::Point(63, 666);
+			this->txtN->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->txtN->Location = System::Drawing::Point(541, 156);
 			this->txtN->Name = L"txtN";
 			this->txtN->Size = System::Drawing::Size(100, 24);
 			this->txtN->TabIndex = 12;
 			// 
 			// calculate
 			// 
+			this->calculate->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->calculate->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->calculate->Location = System::Drawing::Point(476, 638);
 			this->calculate->Name = L"calculate";
-			this->calculate->Size = System::Drawing::Size(216, 58);
+			this->calculate->Size = System::Drawing::Size(270, 93);
 			this->calculate->TabIndex = 13;
 			this->calculate->Text = L"Calc";
 			this->calculate->UseVisualStyleBackColor = true;
 			this->calculate->Click += gcnew System::EventHandler(this, &IntegrationForm::calculate_Click);
+			// 
+			// clear
+			// 
+			this->clear->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->clear->Font = (gcnew System::Drawing::Font(L"Tahoma", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->clear->Location = System::Drawing::Point(46, 728);
+			this->clear->Name = L"clear";
+			this->clear->Size = System::Drawing::Size(107, 39);
+			this->clear->TabIndex = 14;
+			this->clear->Text = L"clear";
+			this->clear->UseVisualStyleBackColor = true;
+			this->clear->Click += gcnew System::EventHandler(this, &IntegrationForm::button1_Click);
 			// 
 			// IntegrationForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1285, 779);
+			this->Controls->Add(this->clear);
 			this->Controls->Add(this->calculate);
 			this->Controls->Add(this->txtN);
 			this->Controls->Add(this->label2);
@@ -322,12 +363,12 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		bool Flagx = true;
 		bool Flagy = true;
 
-		// Set equation and bounds
-		integrator.setEquation(eq);
+		
 		// Check if a or b contains variables like x or y
 		if (a.find("x") != std::string::npos || a.find("y") != std::string::npos|| 
 			b.find("x")!=std::string::npos||b.find("y")!= std::string::npos) {
 			MessageBox::Show("Please enter valid numeric values for a and b.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			richTextBox1->Clear();
 			return;
 		}
 		else {
@@ -337,12 +378,17 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		// If user chose to generate values
 		if (GenerateButton->Checked) {
 			try {
+				// Set equation 
+
+				integrator.setEquation(eq);
 				int points = System::Convert::ToInt32(txtN->Text);
+				points = points + 1;
 				integrator.setPoints(points);
 				integrator.generateTable();
 			}
 			catch (System::FormatException^ ex) {
 				MessageBox::Show("Please enter a valid number of points.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				richTextBox1->Clear();
 				return;
 			}
 			
@@ -350,6 +396,7 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 		// If user entered values manually in the table
 		else {
 			std::vector<std::pair<double, double>> table;
+			std::set<double> xValues;
 
 			for (int i = 0; i < dataGridTable->Rows->Count - 1; i++) {
 				if (dataGridTable->Rows[i]->Cells[0]->Value != nullptr &&
@@ -364,32 +411,44 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 						if (Flagy == false || Flagx == false)
 						{
 							MessageBox::Show("Invalid numeric value in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							richTextBox1->Clear();
+							return;
 						}
+						if (xValues.count(x)) {
+							MessageBox::Show("Duplicate X value found in row " + i, "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+							richTextBox1->Clear();
+							return;
+						}
+						xValues.insert(x);
 
 						table.push_back({ x, y });
 					}
 					catch (const std::exception& ex)
 					{
-						MessageBox::Show("An error occurred in row: " + i + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						MessageBox::Show("An error occurred in row: " + i+ " , " + gcnew System::String(ex.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						richTextBox1->Clear();
 						return;
 					}
 					
 				}
 				else {
 					MessageBox::Show("Please fill all X and Y values.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					richTextBox1->Clear();
 					return;
 				}
 			}
-
 			integrator.loadTable(table);
 		}
 
 		// Clear previous results
 		richTextBox1->Clear();
+		bool any_checked = false;
+
 
 		// Loop through checked items and apply selected integration methods
 		for (int i = 0; i < MethodTable->Items->Count; i++) {
 			if (MethodTable->GetItemChecked(i)) {
+				any_checked = true;
 				System::String^ methodName = MethodTable->Items[i]->ToString();
 				double result = 0;
 
@@ -407,19 +466,38 @@ private: System::Void calculate_Click(System::Object^ sender, System::EventArgs^
 				}
 			}
 		}
+		if (!any_checked) {
+			MessageBox::Show("Please select at least one method.", "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			richTextBox1->Clear();
+			return;
+		}
+		
 
 	}
 	catch (const std::exception& e) {
 
 		MessageBox::Show("An error occurred: " + gcnew System::String(e.what()), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		richTextBox1->Clear();
+		return;
 	}
 	catch (...)
 	{
 		MessageBox::Show("An error occurred: " + gcnew System::String("Unknown Error"), "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		richTextBox1->Clear();
+		return;
 	}
 
 };
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Clear all text boxes and data grid
+	txtA->Clear();
+	txtB->Clear();
+	Equation->Clear();
+	dataGridTable->Rows->Clear();
+	dataGridTable->Rows->Add();
+	richTextBox1->Clear();
 }
 };
 }

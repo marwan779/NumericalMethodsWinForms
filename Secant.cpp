@@ -28,6 +28,11 @@ double SecantSolver::solve() {
     Parser.parseEquation(expr);
     double f1 = Parser.evaluate(x1);
 
+    if (f0 * f1 >= 0) {
+        resultStream << "No sign change: f(a) and f(b) must have opposite signs.\n";
+        return 0.0;
+    }
+
     double x2;
 
     for (int i = 0; i < maxIter; ++i) {
